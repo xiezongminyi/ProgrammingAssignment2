@@ -1,0 +1,30 @@
+## Coursera Programming Assignment #2 Xiezongmin Yi : ##Caching the Inverse of a matrix
+
+## Create a special vector that could cache the inverse of ##a matrix
+
+makeCacheMatrix <- function(x = matrix()) {
+	inv <- NULL
+	set <- function(y) {
+		x <<- y
+		inv <<- NUlL
+	}
+	get <- function() x
+	setinv <- function(inverse) inv <<- inverse
+	getinv <- function() inv
+	list(set=set, get=get, setinv = setinv, getinv=getinv)
+}
+
+
+## The following function calculates the inverse of the ##above vector, it first checks to see if the inverse has ##already been calculated. 
+
+cacheSolve <- function(x, ...) {
+        inv <- x$getinv()
+        if(!is.null(inv)) {
+        	message("getting cached data")
+        	return(inv)
+        }
+        data <- x$get()
+        inv <- solve(data, ...)
+        x$setinv(inv)
+        inv
+}
